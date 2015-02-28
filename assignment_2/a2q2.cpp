@@ -17,7 +17,6 @@ std::pair<int, int> makesSum(std::vector<int> & a, std::vector<int> & b, int sum
 	int lowB;
 	
 	// Perform a linear search on A, and a binary search on B (for each value in A)
-	
 	for (int i = 0; i < a.size(); i++)
 	{
 		highB = b.size();
