@@ -1,7 +1,22 @@
+//g++ -std=c++11 -Wall -pedantic -O3 a3q1.cpp -o a3q1
+
 #include <iostream>
 #include <string>
 #include <map>
 #include <vector>
+
+bool substrcomp(const std::string & str, const std::string & pattern, unsigned index)
+{
+	std::cout<< "string: "<< str<< "\nPattern: "<< pattern<< "\nindex: "<< index<< "\n";
+	
+	
+	if (pattern.length() + index >= str.length()) return false;
+	std::string cmp = str.substr(index, pattern.length());
+	
+	std::cout<< "cmp: "<< cmp<< "\n\n";
+	
+	return true;
+}
 
 std::map<char, int> badSymbol(const std::string & pattern)
 {
@@ -36,13 +51,21 @@ std::map<int, int> goodSuffix(const std::string & pattern)
     for (int k = 1; k < pattern.length() - 1; k++)
     {
         tail = pattern.substr((pattern.length() - 1) - k);
-        std::cout<< tail<< "\n";
+		
+		char pre = pattern[(pattern.length() - 1) - (k + 1)];
+		
+		for (int i = 0; i < pattern.length(); i++)
+		{
+			substrcomp(pattern, tail, i);
+		}
     }
+    
+    return suffix;
 }
 
 int main()
 {
     std::string pattern = "BAOBAB";
-    //badSymbol("BAOBAB");
+    //badSymbol(pattern);
     goodSuffix(pattern);
 }
